@@ -9,7 +9,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render json: @posts }
+      format.json { render json: @post.as_json.merge(url: @post.image.url) }
     end
   end
 

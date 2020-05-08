@@ -14,6 +14,7 @@
 #  updated_at         :datetime         not null
 #
 class Career < ApplicationRecord
+  has_many :career_form
   has_rich_text :content
   has_attached_file :image,
                     styles: { medium: '300x300>', thumb: '100x100>' },
