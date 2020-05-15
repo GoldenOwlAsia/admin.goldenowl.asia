@@ -3,7 +3,7 @@ class CareersController < ApplicationController
   before_action :set_career, only: %i[show edit update destroy]
 
   def index
-    @pagy, @careers = pagy(Career.all.order(id: :asc), items: params[:size] || 6)
+    @pagy, @careers = pagy(Career.all.order(id: :desc), items: params[:size] || 6)
     # return api : return 6items or size items
     # respond_to do |format|
     #   format.html
@@ -47,7 +47,7 @@ class CareersController < ApplicationController
   def destroy
     @career.destroy
     respond_to do |format|
-      format.html { redirect_to careers_url, notice: 'Career was successfully destroyed.' }
+      format.html { redirect_to careers_url, notice: 'Career was successfully deleted.' }
       format.json { head :no_content }
     end
   end

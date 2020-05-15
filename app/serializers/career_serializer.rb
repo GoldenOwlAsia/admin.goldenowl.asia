@@ -15,11 +15,12 @@
 #
 class CareerSerializer
   include FastJsonapi::ObjectSerializer
+
   attributes  :title,
-              :content,
               :job_type,
               :status
+
   attributes :content do |career|
-    career.content.body.to_html
+    career.serializable_rich_content
   end
 end

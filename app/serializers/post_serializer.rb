@@ -14,7 +14,9 @@
 class PostSerializer
   include FastJsonapi::ObjectSerializer
   set_type :post
-  attributes  :title
+  attributes  :title,
+              :created_at,
+              :updated_at
   attributes  :image do |post|
     post.image.url
   end

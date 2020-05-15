@@ -13,13 +13,15 @@ section.section
         p.level-item.mr-3
           = link_to "Delete", career_path(@career), method: :delete, data: { confirm: "Are you sure?" }, class:"button btn btn-danger btn-sm"
         p.level-item
-          = link_to  "Back", careers_path(page: @page), class:"button btn btn-dark btn-sm"
+          = link_to  "Back", careers_path(page: @page), class:"button btn btn-secondary btn-sm"
     hr/
     h4.title
       = @career.title
     .content
       / @note https://stackoverflow.com/questions/35465655/why-is-my-view-being-flagged-as-an-xss-vulnerability
       / Unescaped model attribute on issuess codelimae
+      / <div class="trix-content">  <div><action-text-attachment sgid="BAh7CEkiCGdpZAY6BkVUSSJBZ2lkOi8vYWRtaW4tZ29sZGVub3dsLWFzaWEvQWN0aXZlU3RvcmFnZTo6QmxvYi8xMT9leHBpcmVzX2luBjsAVEkiDHB1cnBvc2UGOwBUSSIPYXR0YWNoYWJsZQY7AFRJIg9leHBpcmVzX2F0BjsAVDA=--53bda99d4c76b650ca2c6d2d14fea874b96fd4ac" content-type="image/png" url="http://localhost:3000/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBFQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--5217f5f0538029756c017651a4b87cdb715da601/6.png" filename="6.png" filesize="72055" width="1321" height="713" previewable="true" presentation="gallery"></action-text-attachment>asasdasd 12345</div></div>
+
       = sanitize raw(@career.content)
       hr/
     .content

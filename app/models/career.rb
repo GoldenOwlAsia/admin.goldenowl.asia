@@ -24,4 +24,8 @@ class Career < ApplicationRecord
                                     content_type: ['image/jpeg', 'image/gif', 'image/png']
   validates :content, presence: true
   validates :title, presence: true
+
+  def serializable_rich_content
+    ActionController::Base.helpers.sanitize(ActionController::Base.helpers.raw(content))
+  end
 end
