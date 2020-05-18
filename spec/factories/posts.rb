@@ -13,13 +13,17 @@
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #
+# require 'spec_helper'
+
 FactoryBot.define do
   factory :post do
     title { 'MyString' }
     content { 'MyText' }
+    image { File.new("#{Rails.root}/spec/support/fixtures/tests.jpg") }
   end
   trait :invalid do
     title { '' }
     content { '' }
+    image { '' }
   end
 end

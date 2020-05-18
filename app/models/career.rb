@@ -14,6 +14,7 @@
 #  updated_at         :datetime         not null
 #
 class Career < ApplicationRecord
+  # STATUSES = { :Open => 'Open', :JobFilled => 'Job Filled' }
   has_many :job_submisstion
   has_rich_text :content
   has_attached_file :image, storage: :cloudinary,

@@ -4,6 +4,7 @@ class HomeController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @user = User.all
+    @user = User.find(params[:id])
+    # @user = User.all
   end
 end

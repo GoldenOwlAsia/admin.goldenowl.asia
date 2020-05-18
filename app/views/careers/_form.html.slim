@@ -8,13 +8,16 @@
       = f.rich_text_area :content
     .field.mt-3.mb-2
       .control
-        / = f.input :job_type, label: 'Time :', input_html: { class: 'input' }, wrapper: false, label_html: { class: 'hide' }
-        = select_tag :job_type, raw(option[value="1"]| Lisbons.option[value="2"]| Madrid option[value="3"]| Berlin )
+        h5 Job Type :
+        = f.select :job_type, options_for_select([['Full-time', :Full_time], ['Part-time', :Part_time]])
+        / = select_tag :job_type, raw(option[value="1"]| Lisbons.option[value="2"]| Madrid option[value="3"]| Berlin )
 
     .field.mt-3.mb-2
       .control
-        = f.input :status, label: 'Status :',input_html: { class: 'input' }, wrapper: false, label_html: { class: 'label' }
+        h5 Status :
+        = f.select :status, options_for_select([['Open', :Open], ['Job Filled', :JobFilled]])
+        / = f.input :status, label: 'Status :',input_html: { class: 'input' }, wrapper: false, label_html: { class: 'label' }
 
     / = f.input :image, as: :file
     = f.button :submit, class: "btn btn-info mb-2"
-    = link_to  "Back", careers_path(page: @page), class:"btn btn-secondary mb-2 ml-4"
+    = link_to  "Back", :back, class:"btn btn-secondary mb-2 ml-4"
