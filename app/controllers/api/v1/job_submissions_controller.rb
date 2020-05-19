@@ -4,7 +4,7 @@ module Api
       def create
         @job_submission = JobSubmission.new(submit_params)
         if @job_submission.save
-          render json: JobSubmissionSerializer.new(@job_submission).serialized_json,
+          render json: JobSubmissionSerializer.new(@job_submission),
                  status: :created,
                  location: @job_submission
         else

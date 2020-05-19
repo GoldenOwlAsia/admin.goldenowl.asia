@@ -2,15 +2,19 @@
 #
 # Table name: job_submissions
 #
-#  id         :bigint           not null, primary key
-#  answer     :text
-#  email      :string           not null
-#  first_name :string           not null
-#  last_name  :string           not null
-#  port_folio :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  career_id  :integer
+#  id                     :bigint           not null, primary key
+#  answer                 :text
+#  cv_upload_content_type :string
+#  cv_upload_file_name    :string
+#  cv_upload_file_size    :integer
+#  cv_upload_updated_at   :datetime
+#  email                  :string           not null
+#  first_name             :string           not null
+#  last_name              :string           not null
+#  port_folio             :string
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  career_id              :integer
 #
 # Foreign Keys
 #
@@ -24,7 +28,9 @@ FactoryBot.define do
     port_folio { 'MyString' }
     answer { 'MyText' }
     career { FactoryBot.create(:career) }
+    cv_upload { Rack::Test::UploadedFile.new(File.open(File.join(Rails.root, '/spec/fixtures/file/HR_Manager.pdf'))) }
   end
+
   trait :invaid_job_submission do
     first_name { '' }
     last_name { '' }
