@@ -23,7 +23,7 @@ FactoryBot.define do
     email { 'MyString' }
     port_folio { 'MyString' }
     answer { 'MyText' }
-    career { FactoryBot.create(:career) }
+    career_id { 1 }
   end
   trait :invaid_job_submission do
     first_name { '' }

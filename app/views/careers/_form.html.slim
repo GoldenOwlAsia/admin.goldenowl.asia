@@ -9,13 +9,13 @@
     .field.mt-3.mb-2
       .control
         h5 Job Type :
-        = f.select :job_type, options_for_select([['Full-time', :Full_time], ['Part-time', :Part_time]])
+        = f.select :job_type, options_for_select(Career::JOB)
         / = select_tag :job_type, raw(option[value="1"]| Lisbons.option[value="2"]| Madrid option[value="3"]| Berlin )
 
     .field.mt-3.mb-2
       .control
         h5 Status :
-        = f.select :status, options_for_select([['Open', :Open], ['Job Filled', :JobFilled]])
+        = f.select :status, options_for_select(Career::STATUSES)
         / = f.input :status, label: 'Status :',input_html: { class: 'input' }, wrapper: false, label_html: { class: 'label' }
 
     / = f.input :image, as: :file

@@ -19,11 +19,15 @@ FactoryBot.define do
   factory :post do
     title { 'MyString' }
     content { 'MyText' }
-    image { File.new("#{Rails.root}/spec/support/fixtures/tests.jpg") }
   end
+
   trait :invalid do
     title { '' }
     content { '' }
-    image { '' }
+  end
+
+  trait :with_image_from_file do
+    image { Rack::Test::UploadedFile.new("#{Rails.root}/spec/support/fixtures/tests.jpg", 'image/jpg') }
+    # https://stackoverflow.com/questions/40796140/how-to-upload-a-file-in-a-rails-rspec-request-spec
   end
 end

@@ -21,6 +21,7 @@ class CareerSerializer
               :status
 
   attributes :content do |career|
-    career.serializable_rich_content
+    # career.serializable_rich_content
+    ActionController::Base.helpers.sanitize(ActionController::Base.helpers.raw(career.content))
   end
 end

@@ -14,7 +14,8 @@
 #  updated_at         :datetime         not null
 #
 class Career < ApplicationRecord
-  # STATUSES = { :Open => 'Open', :JobFilled => 'Job Filled' }
+  STATUSES = %i[open job_filled].map(&:to_s).map(&:titleize)
+  JOB = %i[full_time part_time].map(&:to_s).map(&:titleize)
   has_many :job_submisstion
   has_rich_text :content
   has_attached_file :image, storage: :cloudinary,
@@ -25,6 +26,8 @@ class Career < ApplicationRecord
                                     content_type: ['image/jpeg', 'image/gif', 'image/png']
   validates :content, presence: true
   validates :title, presence: true
+  validates_inclusion_of :job_type, in: JOB
+  validates_inclusion_of :status, in: STATUSES
 
   def serializable_rich_content
     ActionController::Base.helpers.sanitize(ActionController::Base.helpers.raw(content))

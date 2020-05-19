@@ -15,7 +15,6 @@ RSpec.describe CareersController, type: :controller do
 
     describe 'GET show' do
       let(:career) { create(:career) }
-
       it 'render the careers#show' do
         get :show, params: { id: career.id }
         expect(response).to render_template :show
