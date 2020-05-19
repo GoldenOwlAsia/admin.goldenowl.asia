@@ -5,7 +5,7 @@
         ol.breadcrumb.m-0
           li.breadcrumb-item
             = link_to 'Home', root_path
-          li.breadcrumb-item.active Career
+          li.breadcrumb-item Career
       h4.page-title
         | Career
 section.hero.is-primary.is-medium
@@ -32,7 +32,7 @@ section.section
               h5.title.is-4
                 = link_to career.title, career
             .content.mb-1
-              = raw career.content
+              / = raw career.content
             hr/
             .content.mb-1
               = career.job_type

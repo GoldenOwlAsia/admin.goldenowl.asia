@@ -5,7 +5,7 @@
         ol.breadcrumb.m-0
           li.breadcrumb-item
             = link_to 'Home', root_path
-          li.breadcrumb-item.active Blog
+          li.breadcrumb-item Blog
       h4.page-title
         | Blog
 section.hero.is-primary.is-medium
@@ -32,9 +32,10 @@ section.section
               h5.title.is-4
                 = link_to post.title, post
             .content.mb-1
-              = raw post.content
+              / = raw post.content
         .container.mt-2.mb-4
-          = image_tag post.image.url(:medium)
+          - if post.image.present?
+              = image_tag post.image.url(:medium)
 section.section
   .container.mb-3
     .d-flex.justify-content-center
