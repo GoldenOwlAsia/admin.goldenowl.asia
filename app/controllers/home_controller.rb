@@ -4,14 +4,16 @@ class HomeController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    if params[:search]
-      @pagy, @users = pagy(search, items: per_page)
-    else
-      @pagy, @users = pagy(User.all.order(id: :desc), items: per_page)
-    end
+    @pagy, @users = pagy(retrieve_users_relation, items: per_page)
   end
 
-  def search
-    User.where('lower(email) LIKE ?', '%' + params[:search].downcase + '%')
+  private
+
+  def retrieve_users_relation
+    if params[:search]
+      User.where('lower(email) LIKE ?', '%' + params[:search].downcase + '%')
+    else
+      User.all.order(id: :desc)
+    end
   end
 end
