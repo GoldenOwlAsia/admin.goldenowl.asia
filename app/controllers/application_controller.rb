@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   layout :layout_by_resource
 
   DEFAULT_PER_PAGE = 6
+  MAX_PER_PAGE = 25
 
   private
 
@@ -13,6 +14,8 @@ class ApplicationController < ActionController::Base
   end
 
   def per_page
-    params[:size] || DEFAULT_PER_PAGE
+    return DEFAULT_PER_PAGE if params[:size].blank?
+
+    params[:size].to_i > MAX_PER_PAGE ? DEFAULT_PER_PAGE : params[:size]
   end
 end
