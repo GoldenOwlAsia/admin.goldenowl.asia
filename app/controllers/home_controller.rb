@@ -11,7 +11,7 @@ class HomeController < ApplicationController
 
   def retrieve_users_relation
     if params[:search]
-      User.where('lower(email) LIKE ?', '%' + params[:search].downcase + '%')
+      User.search(params[:search])
     else
       User.all.order(id: :desc)
     end
