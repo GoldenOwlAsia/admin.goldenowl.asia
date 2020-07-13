@@ -1,7 +1,11 @@
 class SubscriptionMailer < ApplicationMailer
   default from: 'austin@goldenowl.asia'
 
-  def email_subscription(list_email)
-    mail(to: list_email, subject: 'Subscription Email') if list_email.any?
+  def subscription_email_for_posts(email)
+    mail(to: email, subject: 'Subscription Email')
+  end
+
+  def subscription_email_for_post(email)
+    mail(to: email, subject: 'Subscription Email')
   end
 end
