@@ -14,7 +14,7 @@
 #  updated_at         :datetime         not null
 #
 class Career < ApplicationRecord
-  after_commit :send_mail, on: [:create, :update]
+  after_commit :send_mail, on: %i[create update]
 
   has_many :job_submisstion
 
@@ -44,11 +44,11 @@ class Career < ApplicationRecord
   private
 
   def send_mail
-    if Career.last.status == 'Open'
-      list_emails = Subscription.list_email_subscription_careers.pluck(:email)
-      list_emails.each do |email|
-        SubscriptionMailer.subscription_email_for_career(email).deliver_later
-      end
+    return unless Career.last.status == 'Open'
+
+    list_emails = Subscription.list_email_subscription_careers.pluck(:email)
+    list_emails.each do |email|
+      SubscriptionMailer.subscription_email_for_career(email).deliver_later
     end
   end
 end
