@@ -18,6 +18,6 @@ class Subscription < ApplicationRecord
             length: { minimum: 3, maximum: 20 },
             presence: true
 
-  scope :list_email_subscription_posts, -> { where(subscription_type: [nil, '', 'post'])}
-  scope :list_email_subscription_careers, -> { where(subscription_type: [nil, '', 'career'])}
+  scope :list_email_subscription_posts, -> { where(subscription_type: [nil, '', 'post']) }
+  scope :list_email_subscription_careers, -> { where(subscription_type: [nil, '', 'career']) }
 end
