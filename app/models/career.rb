@@ -48,7 +48,7 @@ class Career < ApplicationRecord
 
     list_emails = Subscription.list_email_subscription_careers.pluck(:email)
     list_emails.each do |email|
-      SubscriptionMailer.subscription_email_for_career(email).deliver_later
+      SubscriptionMailer.subscription_email_for_career(email, id).deliver_later
     end
   end
 end

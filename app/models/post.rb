@@ -37,7 +37,7 @@ class Post < ApplicationRecord
   def send_mail
     list_emails = Subscription.list_email_subscription_posts.pluck(:email)
     list_emails.each do |email|
-      SubscriptionMailer.subscription_email_for_post(email).deliver_later
+      SubscriptionMailer.subscription_email_for_post(email, id).deliver_later
     end
   end
 end
