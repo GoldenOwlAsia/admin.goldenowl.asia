@@ -22,9 +22,9 @@ RSpec.describe SubscriptionMailer, type: :mailer do
 
   describe '.subscription_email_for_carrer' do
     before do
-      @carrer = FactoryBot.create(:carrer, :with_image_from_file)
+      @career = FactoryBot.create(:career)
       @reveiver_email = 'to_reveiver@gmail.com'
-      @mail = SubscriptionMailer.subscription_email_for_post('to_reveiver@gmail.com', @post.id)
+      @mail = SubscriptionMailer.subscription_email_for_career('to_reveiver@gmail.com', @career.id)
     end
 
     it 'renders the headers' do
@@ -34,8 +34,8 @@ RSpec.describe SubscriptionMailer, type: :mailer do
     end
 
     it 'renders the body' do
-      expect(@mail.body.encoded).to include('GOLDEN OWL - NEW BLOG')
-      expect(@mail.body.encoded).to include(post_url(@post))
+      expect(@mail.body.encoded).to include('GOLDEN OWL - NEW CAREER')
+      expect(@mail.body.encoded).to include(career_url(@career))
     end
   end
 end
