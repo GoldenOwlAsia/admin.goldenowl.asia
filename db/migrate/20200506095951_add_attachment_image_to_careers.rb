@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddAttachmentImageToCareers < ActiveRecord::Migration[4.2]
   def up
     add_attachment :careers, :image
