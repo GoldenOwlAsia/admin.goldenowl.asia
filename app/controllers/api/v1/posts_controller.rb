@@ -7,7 +7,7 @@ module Api
       before_action :prepare_posts, only: :related_posts
 
       def index
-        @posts = Post.all
+        @pagy, @posts = pagy(extract_post, items: per_page)
         render json: PostSerializer.new(@posts)
       end
 
@@ -51,6 +51,14 @@ module Api
         posts = Post.order(id: :desc)
         @latest_posts = posts.where('id > ?', @post.id).last(@quality)
         @oldest_posts = posts.where('id < ?', @post.id).first(@quality)
+      end
+
+      def extract_post
+        if params[:search]
+          Post.search(params[:search])
+        else
+          Post.all.order(id: :desc)
+        end
       end
     end
   end
