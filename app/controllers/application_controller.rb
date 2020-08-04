@@ -18,4 +18,10 @@ class ApplicationController < ActionController::Base
 
     params[:size].to_i > MAX_PER_PAGE ? MAX_PER_PAGE : params[:size]
   end
+
+  def get_pagination_url(pagy_items, pagy_page, controller_name)
+    return if pagy_page.blank?
+
+    "#{ENV["ADMIN_PANEL_#{controller_name.upcase}_URL"]}?size=#{pagy_items}&page=#{pagy_page}"
+  end
 end

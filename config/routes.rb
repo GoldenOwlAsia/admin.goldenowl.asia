@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :activities
   resources :careers do
     resources :job_submissions
   end
@@ -15,6 +16,7 @@ Rails.application.routes.draw do
         end
       end
       resources :careers, only: %i[index show]
+      resources :activities, only: %i[index show]
       resources :job_submissions
       resources :subscriptions
     end

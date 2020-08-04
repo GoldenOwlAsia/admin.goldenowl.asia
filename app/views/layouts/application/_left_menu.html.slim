@@ -22,6 +22,10 @@
           span Careers
       li.side-nav-item
         = link_to api_v1_subscriptions_path, class: "side-nav-link #{active_items('subscriptions')}" do
-          i.dripicons-briefcase
+          i.dripicons-bell
           span Subscriptions
+      li.side-nav-item
+        = link_to activities_path, class: "side-nav-link #{active_items('activities')}" do
+          i.dripicons-clipboard
+          span Activities
     .clearfix
