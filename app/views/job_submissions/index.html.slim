@@ -5,9 +5,9 @@
         ol.breadcrumb.m-0
           li.breadcrumb-item
             = link_to 'Home', root_path
-          li.breadcrumb-item Subscription
+          li.breadcrumb-item Job Submissions
       h4.page-title
-        | Subsctiption List
+        | Job Submissions
 .row
   .col
     .container
@@ -19,14 +19,18 @@
               tr
                 th scope="col" ID
                 th scope="col" Email
-                th scope="col" Subscription Type
-              - @subscriptions.each do |subscription|
+                th scope="col" Full Name
+                th scope="col" Career
+                th scope="col" Date
+              - @job_submissions&.each do |job_submission|
                 tr
-                  td = subscription.id
-                  td = subscription.email
-                  td = subscription.subscription_type
+                  td = job_submission.id
+                  td = job_submission.email
+                  td = job_submission.full_name
+                  td = job_submission.career.title
+                  td = job_submission.created_at
 section.section
   .container.mb-3
     .d-flex.justify-content-center
-      - if @subscriptions.size > 0
+      - if @job_submissions&.size > 0
           == pagy_bootstrap_nav(@pagy)

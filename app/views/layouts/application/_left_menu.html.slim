@@ -21,7 +21,11 @@
           i.dripicons-briefcase
           span Careers
       li.side-nav-item
-        = link_to api_v1_subscriptions_path, class: "side-nav-link #{active_items('subscriptions')}" do
+        = link_to job_submissions_path, class: "side-nav-link #{active_items('job_submissions')}" do
+          i.dripicons-bell
+          span Job Submissions
+      li.side-nav-item
+        = link_to subscriptions_path, class: "side-nav-link #{active_items('subscriptions')}" do
           i.dripicons-briefcase
           span Subscriptions
     .clearfix

@@ -1,11 +1,16 @@
 Rails.application.routes.draw do
+  devise_for :users
+
+  get 'home', to: 'home#index'
+  root 'home#index'
+
   resources :careers do
     resources :job_submissions
   end
-  devise_for :users
+
   resources :posts
-  get 'home', to: 'home#index'
-  root 'home#index'
+  resources :job_submissions, only: :index
+  resources :subscriptions, only: :index
 
   namespace :api do
     namespace :v1 do
@@ -15,7 +20,7 @@ Rails.application.routes.draw do
         end
       end
       resources :careers, only: %i[index show]
-      resources :job_submissions
+      resources :job_submissions, only: %i[create index]
       resources :subscriptions
     end
   end

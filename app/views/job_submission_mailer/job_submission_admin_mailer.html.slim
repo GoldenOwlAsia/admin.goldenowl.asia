@@ -1,0 +1,15 @@
+- provide(:title, 'Submission Candidate')
+
+p style=("font-size: 14px;")
+  | Hi Admin Golden Owl
+p style=("line-height: 1.5; font-size: 14px;")
+  = "There was one candidate who applied for the position #{@job_submission.career.title} at #{@job_submission.created_at.strftime("%d/%m/%Y -  %k:%M %p")}"
+  
+  p style=("line-height: 1.5; font-size: 14px;")
+ 
+    = "Name: #{@job_submission.full_name}"
+    br
+    = "Email: #{@job_submission.email}"
+    br
+    = "Position: #{@job_submission.career.title}"
+    br

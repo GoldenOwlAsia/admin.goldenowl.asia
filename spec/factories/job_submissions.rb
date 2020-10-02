@@ -19,20 +19,17 @@
 #
 FactoryBot.define do
   factory :job_submission do
-    first_name { 'MyString' }
-    last_name { 'MyString' }
-    email { 'MyString' }
-    port_folio { 'MyString' }
-    answer { 'MyText' }
+    full_name { Faker::Name.name }
+    email { Faker::Internet.email }
     cv_upload { 'drives.google.com/public/system/files/abc.pdf' }
+    port_folio { 'MyString' }
     association :career
   end
+
   trait :invaid_job_submission do
-    first_name { '' }
-    last_name { '' }
+    full_name { '' }
     email { '' }
     port_folio { '' }
-    answer { '' }
     cv_upload { '' }
   end
 end

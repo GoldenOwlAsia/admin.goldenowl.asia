@@ -6,8 +6,7 @@
 #  answer     :text
 #  cv_upload  :string
 #  email      :string           not null
-#  first_name :string           not null
-#  last_name  :string           not null
+#  full_name  :string
 #  port_folio :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
@@ -19,10 +18,6 @@
 #
 class JobSubmissionSerializer
   include FastJsonapi::ObjectSerializer
-  attributes  :first_name,
-              :last_name,
-              :email,
-              :port_folio,
-              :answer,
-              :cv_upload
+
+  attributes :full_name, :email, :cv_upload, :port_folio
 end

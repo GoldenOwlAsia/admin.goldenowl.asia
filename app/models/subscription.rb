@@ -33,6 +33,8 @@ class Subscription < ApplicationRecord
     where(subscription_type: %w[both career])
   }
 
+  scope :search, ->(search_string) { where('lower(email) LIKE ?', "%#{search_string.downcase}%") }
+
   def user_name
     email.split('@')[0]
   end
