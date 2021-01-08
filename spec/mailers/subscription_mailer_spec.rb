@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe SubscriptionMailer, type: :mailer do
   describe '.subscription_email_for_post' do
     before do
-      @post = FactoryBot.create(:post, :with_image_from_file)
+      @post_category = FactoryBot.create(:post_category)
+      @post = FactoryBot.create(:post, :with_image_from_file, post_category_id: @post_category.id)
       @reveiver_email = 'to_reveiver@gmail.com'
       @mail = SubscriptionMailer.subscription_email_for_post(
         'to_reveiver@gmail.com', @post.id
@@ -18,7 +19,7 @@ RSpec.describe SubscriptionMailer, type: :mailer do
 
     it 'renders the body' do
       expect(@mail.body.encoded).to include('GOLDEN OWL - NEW BLOG')
-      expect(@mail.body.encoded).to include("https://golden-owl-web.herokuapp.com/blog/details/#{@post.slug}")
+      expect(@mail.body.encoded).to include(@post.slug)
     end
   end
 
@@ -37,7 +38,7 @@ RSpec.describe SubscriptionMailer, type: :mailer do
 
     it 'renders the body' do
       expect(@mail.body.encoded).to include('GOLDEN OWL - NEW CAREER')
-      expect(@mail.body.encoded).to include("https://golden-owl-web.herokuapp.com/careers/details/#{@career.slug}")
+      expect(@mail.body.encoded).to include("https://goldenowl.asia/careers")
     end
   end
 end

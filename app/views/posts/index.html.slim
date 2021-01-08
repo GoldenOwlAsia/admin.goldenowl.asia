@@ -32,6 +32,10 @@ section.section
               h5.title.is-4
                 = link_to post.title, post
             .media-content
+              h5 Post Category :
+              h6.title.is-4
+                = post.post_category.title
+            .media-content
               h5 Source :
               h6.title.is-4
                 = post.source
@@ -43,7 +47,7 @@ section.section
               / = raw post.content
         .container.mt-2.mb-4
           - if post.image.present?
-              = image_tag post.image.url(:medium)
+              = image_tag post.image_url(:medium)
 section.section
   .container.mb-3
     .d-flex.justify-content-center
