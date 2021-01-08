@@ -33,7 +33,6 @@ FactoryBot.define do
     email { '' }
     port_folio { '' }
     answer { '' }
-    career_id { '' }
     cv_upload { '' }
   end
 end
