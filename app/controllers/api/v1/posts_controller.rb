@@ -13,6 +13,7 @@ module Api
           preview_page_url: pagenation_url(@pagy.items, @pagy.prev),
           next_page_url: pagenation_url(@pagy.items, @pagy.next)
         }
+
         render json: PostSerializer.new(@posts, links: links)
       end
 
@@ -35,7 +36,11 @@ module Api
       def pagenation_url(pagy_items, pagy_page)
         return if pagy_page.blank?
 
-        "#{ENV['ADMIN_PANEL_POST_URL']}?size=#{pagy_items}&page=#{pagy_page}"
+        "#{original_url}?size=#{pagy_items}&page=#{pagy_page}"
+      end
+
+      def original_url
+        request.original_url[/\A[^?]+/]
       end
 
       def set_post
