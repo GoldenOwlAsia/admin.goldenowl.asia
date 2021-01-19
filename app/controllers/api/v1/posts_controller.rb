@@ -7,7 +7,7 @@ module Api
       before_action :prepare_posts, only: :related_posts
 
       def index
-        @pagy, @posts = pagy(extract_post, items: per_page)
+        set_pagy_for_posts(extract_post, per_page)
 
         links = {
           previous_page_url: pagenation_url(@pagy.items, @pagy.prev, params[:search]),
@@ -33,10 +33,16 @@ module Api
 
       private
 
+      def set_pagy_for_posts(extract_post, per_page)
+        @pagy, @posts = pagy(extract_post, items: per_page)
+      end
+
       def pagenation_url(pagy_items, pagy_page, search_param = nil)
         return if pagy_page.blank?
 
-        return "#{original_url}?size=#{pagy_items}&page=#{pagy_page}" unless search_param
+        unless search_param
+          return "#{original_url}?size=#{pagy_items}&page=#{pagy_page}"
+        end
 
         "#{original_url}?search=#{search_param}&size=#{pagy_items}&page=#{pagy_page}"
       end

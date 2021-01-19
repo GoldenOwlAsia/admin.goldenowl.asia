@@ -9,7 +9,11 @@ class DeletedPostsController < ApplicationController
   def show; end
 
   def restore
-    PostCategory.only_deleted.find(@deleted_post.post_category_id).restore unless @deleted_post.post_category
+    unless @deleted_post.post_category
+      deleted_post_category = PostCategory.only_deleted.find(@deleted_post.post_category_id)
+      deleted_post_category.restore
+    end
+
     @deleted_post.update!(deleted: false)
 
     redirect_to deleted_posts_path, success: 'Blog was successfully restored.'
