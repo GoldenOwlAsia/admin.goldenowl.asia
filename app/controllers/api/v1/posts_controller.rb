@@ -7,14 +7,9 @@ module Api
       before_action :prepare_posts, only: :related_posts
 
       def index
-        set_pagy_for_posts(extract_post, per_page)
+        set_page_url(extract_post, per_page)
 
-        links = {
-          previous_page_url: pagenation_url(@pagy.items, @pagy.prev, params[:search]),
-          next_page_url: pagenation_url(@pagy.items, @pagy.next, params[:search])
-        }
-
-        render json: PostSerializer.new(@posts, links: links)
+        render json: PostSerializer.new(@posts, links: @links)
       end
 
       def show
@@ -33,8 +28,13 @@ module Api
 
       private
 
-      def set_pagy_for_posts(extract_post, per_page)
+      def set_page_url(extract_post, per_page)
         @pagy, @posts = pagy(extract_post, items: per_page)
+
+        @links = {
+          previous_page_url: pagenation_url(@pagy.items, @pagy.prev, params[:search]),
+          next_page_url: pagenation_url(@pagy.items, @pagy.next, params[:search])
+        }
       end
 
       def pagenation_url(pagy_items, pagy_page, search_param = nil)
