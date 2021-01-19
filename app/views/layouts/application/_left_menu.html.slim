@@ -17,6 +17,10 @@
           i.dripicons-menu
           span Blog Categories
       li.side-nav-item
+        = link_to deleted_post_categories_path, class: "side-nav-link #{active_items('deleted_post_categories')}" do
+          i.dripicons-document
+          span Deleted Categories
+      li.side-nav-item
         = link_to posts_path, class: "side-nav-link #{active_items('posts')}" do
           i.dripicons-document-new
           span Blogs

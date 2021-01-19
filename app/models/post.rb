@@ -5,7 +5,7 @@
 # Table name: posts
 #
 #  id                 :bigint           not null, primary key
-#  deleted_at         :datetime
+#  deleted            :boolean          default(FALSE)
 #  image_content_type :string
 #  image_file_name    :string
 #  image_file_size    :integer
@@ -27,8 +27,6 @@ class Post < ApplicationRecord
   extend FriendlyId
   include ConvertImageUrl
 
-  acts_as_paranoid
-
   friendly_id :title, use: :slugged
 
   after_create_commit :send_mail
@@ -45,6 +43,8 @@ class Post < ApplicationRecord
 
   belongs_to :post_category, optional: true
 
+  scope :available, -> { where deleted: false }
+  scope :deleted, -> { where deleted: true }
   scope :search, lambda { |search_string|
     joins("INNER JOIN action_text_rich_texts ON action_text_rich_texts.record_id = posts.id AND record_type = 'Post'")
       .where('posts.title ILIKE ? OR action_text_rich_texts.body ILIKE ?', "%#{search_string}%", "%#{search_string}%")

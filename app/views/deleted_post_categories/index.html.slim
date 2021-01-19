@@ -1,0 +1,33 @@
+.row
+  .col-12
+    .page-title-box
+      .page-title-right
+        ol.breadcrumb.m-0
+          li.breadcrumb-item
+            = link_to 'Home', root_path
+          li.breadcrumb-item Deleted Blog Category
+      h4.page-title
+        | Deleted Blog Category
+
+section.hero.is-primary.is-medium
+  .hero-body
+    .container.has-text-centered
+      h1.title
+        = yield :page_title
+
+section.section
+  .container
+    - @deleted_post_categories.each do |deleted_post_category|
+      .card
+        .card-content
+          .container
+            .media
+            .media-content
+              h5.title.is-4
+                = link_to deleted_post_category.title, deleted_post_category_path(deleted_post_category)
+
+section.section
+  .container.mb-3
+    .d-flex.justify-content-center
+      - if @deleted_post_categories.size > 0
+        == pagy_bootstrap_nav(@pagy)

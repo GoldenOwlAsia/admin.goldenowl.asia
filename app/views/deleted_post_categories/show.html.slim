@@ -1,0 +1,16 @@
+- content_for :page_title, @deleted_post_category.title
+section.section
+  .container.mb-4
+    nav.level
+      .level-left.mt-2
+        p.level-item
+          strong Actions
+      .level-right.d-flex
+        p.level-item.mr-3
+          = link_to "Restore", restore_deleted_post_category_path(@deleted_post_category), data: { confirm: "Are you sure?" }, class:"button btn btn-danger btn-sm"
+        p.level-item
+          = link_to  "Back", deleted_post_categories_path(page: @page), class:"button btn btn-dark btn-sm"
+    hr/
+    | Title:
+    h4.title
+      = @deleted_post_category.title

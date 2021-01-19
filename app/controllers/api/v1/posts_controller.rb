@@ -36,9 +36,9 @@ module Api
       def pagenation_url(pagy_items, pagy_page, search_param = nil)
         return if pagy_page.blank?
 
-        return "#{original_url}?search=#{search_param}&size=#{pagy_items}&page=#{pagy_page}" if search_param
+        return "#{original_url}?size=#{pagy_items}&page=#{pagy_page}" unless search_param
 
-        "#{original_url}?size=#{pagy_items}&page=#{pagy_page}"
+        "#{original_url}?search=#{search_param}&size=#{pagy_items}&page=#{pagy_page}"
       end
 
       def original_url
@@ -66,15 +66,15 @@ module Api
       def prepare_posts
         @quality = params[:num_limited].presence || 3
 
-        posts = Post.order(id: :desc)
+        posts = Post.available.order(id: :desc)
         @latest_posts = posts.where('id > ?', @post.id).last(@quality)
         @oldest_posts = posts.where('id < ?', @post.id).first(@quality)
       end
 
       def extract_post
-        return Post.search(params[:search]) if params[:search]
+        return Post.available.search(params[:search]) if params[:search]
 
-        Post.all.order(id: :desc)
+        Post.available.all.order(id: :desc)
       end
     end
   end

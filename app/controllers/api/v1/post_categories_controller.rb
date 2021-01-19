@@ -4,7 +4,7 @@ module Api
       before_action :set_post_category, only: %i[filter_post_by_category]
 
       def filter_post_by_category
-        ordered_posts = @post_category.posts.order(id: :desc)
+        ordered_posts = @post_category.posts.available.order(id: :desc)
         @pagy, @posts = pagy(ordered_posts, items: per_page)
 
         links = {
