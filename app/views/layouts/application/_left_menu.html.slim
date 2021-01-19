@@ -15,11 +15,15 @@
       li.side-nav-item
         = link_to post_categories_path, class: "side-nav-link #{active_items('post_categories')}" do
           i.dripicons-menu
-          span Post Categories
+          span Blog Categories
       li.side-nav-item
         = link_to posts_path, class: "side-nav-link #{active_items('posts')}" do
           i.dripicons-document-new
           span Blogs
+      li.side-nav-item
+        = link_to deleted_posts_path, class: "side-nav-link #{active_items('deleted_posts')}" do
+          i.dripicons-document-remove
+          span Deleted Blogs
       li.side-nav-item
         = link_to careers_path, class: "side-nav-link #{active_items('careers')}" do
           i.dripicons-briefcase

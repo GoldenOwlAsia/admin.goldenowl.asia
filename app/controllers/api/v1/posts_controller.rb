@@ -10,8 +10,8 @@ module Api
         @pagy, @posts = pagy(extract_post, items: per_page)
 
         links = {
-          preview_page_url: pagenation_url(@pagy.items, @pagy.prev),
-          next_page_url: pagenation_url(@pagy.items, @pagy.next)
+          previous_page_url: pagenation_url(@pagy.items, @pagy.prev, params[:search]),
+          next_page_url: pagenation_url(@pagy.items, @pagy.next, params[:search])
         }
 
         render json: PostSerializer.new(@posts, links: links)
@@ -33,8 +33,10 @@ module Api
 
       private
 
-      def pagenation_url(pagy_items, pagy_page)
+      def pagenation_url(pagy_items, pagy_page, search_param = nil)
         return if pagy_page.blank?
+
+        return "#{original_url}?search=#{search_param}&size=#{pagy_items}&page=#{pagy_page}" if search_param
 
         "#{original_url}?size=#{pagy_items}&page=#{pagy_page}"
       end

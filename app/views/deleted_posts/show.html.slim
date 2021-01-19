@@ -1,0 +1,32 @@
+- content_for :page_title, @deleted_post.title
+section.section
+  .container.mb-4
+    nav.level
+      /! Left side
+      .level-left.mt-2
+        p.level-item
+          strong Actions
+      /! Right side
+      .level-right.d-flex
+        p.level-item.mr-3
+          = link_to "Restore", restore_deleted_post_path(@deleted_post), data: { confirm: "Are you sure?" }, class:"button btn btn-primary btn-sm"
+        p.level-item.mr-3
+          = link_to "Delete", deleted_post_path(@deleted_post), method: :delete, data: { confirm: "Action will actually delete the blog. Are you sure?" }, class:"button btn btn-danger btn-sm"
+        p.level-item
+          = link_to  "Back", deleted_posts_path(page: @page), class:"button btn btn-dark btn-sm"
+    hr/
+    | Title:
+    h4.title
+      = @deleted_post.title
+    | Source:
+    h5.title
+      = @deleted_post.source
+    | Type:
+    h5.title
+      = @deleted_post.post_type
+    | Content:
+    .content.mb-2
+      = sanitize raw(@deleted_post.content)
+
+  - if @deleted_post.image.present?
+    = image_tag @deleted_post.image_url(:medium)

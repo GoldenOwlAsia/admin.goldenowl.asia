@@ -5,17 +5,10 @@
         ol.breadcrumb.m-0
           li.breadcrumb-item
             = link_to 'Home', root_path
-          li.breadcrumb-item Blog
-      h4.page-title Blog
+          li.breadcrumb-item Deleted Blog
+      h4.page-title Deleted Blog
 
 section.hero.is-primary.is-medium
-  .hero-head
-    nav.navbar
-      .container
-        .navbar-brand
-        #navbarMenuHeroA.navbar-menu
-          .navbar-end
-            = link_to "Create New Blog", new_post_path, class:"navbar-item"
   .hero-body
     .container.has-text-centered
       h1.title
@@ -23,34 +16,30 @@ section.hero.is-primary.is-medium
 
 section.section
   .container
-    - @posts.each do |post|
+    - @deleted_posts.each do |deleted_post|
       .card
         .card-content
           .container
             .media
             .media-content
               h5.title.is-4
-                = link_to post.title, post
-            .media-content
-              h5 Blog Category:
-              h6.title.is-4
-                = post.post_category&.title
+                = link_to deleted_post.title, deleted_post_path(deleted_post)
             .media-content
               h5 Source:
               h6.title.is-4
-                = post.source
+                = deleted_post.source
             .media-content
               h5 Type:
               h6.title.is-4
-                = post.post_type
+                = deleted_post.post_type
             .content.mb-1
               / = raw post.content
         .container.mt-2.mb-4
-          - if post.image.present?
-              = image_tag post.image_url(:medium)
+          - if deleted_post.image.present?
+            = image_tag deleted_post.image_url(:medium)
 
 section.section
   .container.mb-3
     .d-flex.justify-content-center
-      - if @posts.size > 0
-          == pagy_bootstrap_nav(@pagy)
+      - if @deleted_posts.size > 0
+        == pagy_bootstrap_nav(@pagy)
