@@ -23,4 +23,12 @@ class PostCategory < ApplicationRecord
   validates :title, presence: true, uniqueness: true
 
   has_many :posts
+
+  before_destroy :delete_posts
+
+  private
+
+  def delete_posts
+    posts.update_all(deleted: true)
+  end
 end

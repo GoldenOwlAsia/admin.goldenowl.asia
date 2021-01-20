@@ -41,10 +41,9 @@ class Post < ApplicationRecord
   validates :content, presence: true
   validates :title, presence: true
 
-  belongs_to :post_category, optional: true
+  belongs_to :post_category
 
   scope :available, -> { where deleted: false }
-  scope :deleted, -> { where deleted: true }
   scope :search, lambda { |search_string|
     joins("INNER JOIN action_text_rich_texts ON action_text_rich_texts.record_id = posts.id AND record_type = 'Post'")
       .where('posts.title ILIKE ? OR action_text_rich_texts.body ILIKE ?', "%#{search_string}%", "%#{search_string}%")

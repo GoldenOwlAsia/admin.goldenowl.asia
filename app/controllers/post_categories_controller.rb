@@ -45,8 +45,7 @@ class PostCategoriesController < ApplicationController
   end
 
   def destroy
-    @post_category.posts.update_all(deleted: true)
-    @post_category.destroy!
+    @post_category.destroy
 
     respond_to do |format|
       format.html { redirect_to post_categories_url, notice: 'Post Category was successfully deleted.' }

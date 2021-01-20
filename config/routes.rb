@@ -4,20 +4,7 @@ Rails.application.routes.draw do
   end
   devise_for :users
   resources :post_categories
-
-  resources :deleted_post_categories do
-    member do
-      get :restore
-    end
-  end
-
   resources :posts
-
-  resources :deleted_posts do
-    member do
-      get :restore
-    end
-  end
 
   get 'home', to: 'home#index'
   root 'home#index'

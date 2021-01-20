@@ -39,7 +39,7 @@ RSpec.describe Post, type: :model do
   end
 
   describe 'assocation' do
-    it { is_expected.to belong_to(:post_category).optional }
+    it { is_expected.to belong_to(:post_category) }
   end
 
   describe 'serializable_rich_content' do

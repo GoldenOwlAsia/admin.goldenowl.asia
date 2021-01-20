@@ -20,7 +20,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post, notice: 'Blog was successfully created.' }
+        format.html { redirect_to @post, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else
         format.html { render :new }
@@ -34,7 +34,7 @@ class PostsController < ApplicationController
   def update
     respond_to do |format|
       if @post.update(post_params)
-        format.html { redirect_to @post, notice: 'Blog was successfully updated.' }
+        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
       else
         format.html { render :edit }
@@ -44,10 +44,10 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post.update!(deleted: true)
+    @post.update(deleted: true)
 
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Blog was successfully deleted.' }
+      format.html { redirect_to posts_url, notice: 'Post was successfully deleted.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +69,6 @@ class PostsController < ApplicationController
   def extract_post
     return Post.available.search(params[:search]) if params[:search]
 
-    Post.available.all.order(id: :desc)
+    Post.available.order(id: :desc)
   end
 end

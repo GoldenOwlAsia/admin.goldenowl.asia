@@ -7,9 +7,14 @@ module Api
       before_action :prepare_posts, only: :related_posts
 
       def index
-        set_page_url(extract_post, per_page)
+        @pagy, @posts = pagy(extract_post, items: per_page)
 
-        render json: PostSerializer.new(@posts, links: @links)
+        links = {
+          previous_page_url: pagenation_url(@pagy.items, @pagy.prev, params[:search]),
+          next_page_url: pagenation_url(@pagy.items, @pagy.next, params[:search])
+        }
+
+        render json: PostSerializer.new(@posts, links: links)
       end
 
       def show
@@ -28,21 +33,10 @@ module Api
 
       private
 
-      def set_page_url(extract_post, per_page)
-        @pagy, @posts = pagy(extract_post, items: per_page)
-
-        @links = {
-          previous_page_url: pagenation_url(@pagy.items, @pagy.prev, params[:search]),
-          next_page_url: pagenation_url(@pagy.items, @pagy.next, params[:search])
-        }
-      end
-
       def pagenation_url(pagy_items, pagy_page, search_param = nil)
         return if pagy_page.blank?
 
-        unless search_param
-          return "#{original_url}?size=#{pagy_items}&page=#{pagy_page}"
-        end
+        return "#{original_url}?size=#{pagy_items}&page=#{pagy_page}" if search_param.blank?
 
         "#{original_url}?search=#{search_param}&size=#{pagy_items}&page=#{pagy_page}"
       end
@@ -80,7 +74,7 @@ module Api
       def extract_post
         return Post.available.search(params[:search]) if params[:search]
 
-        Post.available.all.order(id: :desc)
+        Post.available.order(id: :desc)
       end
     end
   end
