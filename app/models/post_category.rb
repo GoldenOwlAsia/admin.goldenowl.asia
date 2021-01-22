@@ -16,7 +16,7 @@
 class PostCategory < ApplicationRecord
   extend FriendlyId
 
-  # acts_as_paranoid
+  acts_as_paranoid
 
   friendly_id :title, use: :slugged
 
