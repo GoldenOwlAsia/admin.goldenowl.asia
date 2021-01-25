@@ -15,8 +15,7 @@ Trix.config.textAttributes.underline = {
 
 const { lang } = Trix.config;
 
-Trix.config.toolbar = {
-  getDefaultHTML() { return `\
+var configText = `\
 <div class="trix-button-row">
   <span class="trix-button-group trix-button-group--text-tools" data-trix-button-group="text-tools">
     <button type="button" class="trix-button trix-button--icon trix-button--icon-bold" data-trix-attribute="bold" data-trix-key="b" title="${lang.bold}" tabindex="-1">${lang.bold}</button>
@@ -36,7 +35,11 @@ Trix.config.toolbar = {
     <button type="button" class="trix-button trix-button--icon trix-button--icon-decrease-nesting-level" data-trix-action="decreaseNestingLevel" title="${lang.outdent}" tabindex="-1">${lang.outdent}</button>
     <button type="button" class="trix-button trix-button--icon trix-button--icon-increase-nesting-level" data-trix-action="increaseNestingLevel" title="${lang.indent}" tabindex="-1">${lang.indent}</button>
   </span>
-  <span class="trix-button-group trix-button-group--file-tools" data-trix-button-group="file-tools">
+\
+`
+
+var configFile = `\
+<span class="trix-button-group trix-button-group--file-tools" data-trix-button-group="file-tools">
     <button type="button" class="trix-button trix-button--icon trix-button--icon-attach" data-trix-action="attachFiles" title="${lang.attachFiles}" tabindex="-1">${lang.attachFiles}</button>
   </span>
   <span class="trix-button-group-spacer"></span>
@@ -56,5 +59,8 @@ Trix.config.toolbar = {
     </div>
   </div>
 </div>\
-`; }
+`
+
+Trix.config.toolbar = {
+  getDefaultHTML() { return configText + configFile; }
 };
