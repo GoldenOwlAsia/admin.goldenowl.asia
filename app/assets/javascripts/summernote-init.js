@@ -9,7 +9,7 @@ $(document).ready(function() {
         ['para', ['ul', 'ol', 'paragraph', 'style']],
         ['table', ['table']],
         ['insert', ['link', 'picture', 'video', 'hr']],
-        ['view', ['codeview']],
+        ['view', ['codeview']]
       ],
       imageTitle: {
         specificAltField: true,
@@ -18,15 +18,15 @@ $(document).ready(function() {
         image: [
             ['image', ['resizeFull', 'resizeHalf', 'resizeQuarter', 'resizeNone']],
             ['float', ['floatLeft', 'floatRight', 'floatNone']],
-            ['remove', ['removeMedia']],
             ['custom', ['imageTitle']],
+            ['remove', ['removeMedia']]
         ],
         link: [
           ['link', ['linkDialogShow', 'unlink']]
         ],
         table: [
           ['add', ['addRowDown', 'addRowUp', 'addColLeft', 'addColRight']],
-          ['delete', ['deleteRow', 'deleteCol', 'deleteTable']],
+          ['delete', ['deleteRow', 'deleteCol', 'deleteTable']]
         ],
         air: [
           ['color', ['color']],
