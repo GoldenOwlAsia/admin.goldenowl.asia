@@ -77,7 +77,7 @@ gem 'sendgrid-ruby'
 # Storage
 gem 'fog', '2.1.0'
 
-gem 'paranoia'
-gem 'jquery-rails'
 gem 'bootstrap'
+gem 'jquery-rails'
+gem 'paranoia'
 gem 'summernote-rails'
