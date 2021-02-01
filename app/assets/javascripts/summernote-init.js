@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).on('ready turbolinks:load', function() {
   $('[data-provider="summernote"]').each(function() {
     $(this).summernote({
       toolbar: [
