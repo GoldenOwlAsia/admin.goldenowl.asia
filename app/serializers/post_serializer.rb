@@ -42,4 +42,6 @@ class PostSerializer
   attributes :image, &:image_url
 
   attributes :content, &:serializable_rich_content
+
+  attributes :post_category, &:title
 end
