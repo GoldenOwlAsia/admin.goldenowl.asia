@@ -34,7 +34,10 @@ class PostSerializer
               :post_type,
               :created_at,
               :updated_at,
-              :slug
+              :slug,
+              :meta_title,
+              :meta_keyword,
+              :meta_description
 
   attributes :image, &:image_url
 
