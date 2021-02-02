@@ -69,7 +69,10 @@ class PostsController < ApplicationController
       :content,
       :image,
       :source,
-      :post_type
+      :post_type,
+      :meta_title,
+      :meta_keyword,
+      :meta_description
     )
   end
 
